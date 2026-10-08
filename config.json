@@ -1,0 +1,133 @@
+{
+  "config": {
+    "name": "منصة د. محجوبي عبدالناصر",
+    "description": "منصة احترافية للطب البيطري والحيوانات الأليفة",
+    "version": "2.0.0",
+    "language": "ar",
+    "theme": "green-vet"
+  },
+  "priority_system": {
+    "1_urgent_diseases": "أمراض طارئة وأخبار انتشار",
+    "2_common_questions": "أسئلة شائعة وإجابات طبية",
+    "3_articles": "مقالات تعليمية ومحتوى",
+    "4_market": "بورصة الأسعار والأسواق"
+  },
+  "urgent_diseases": [
+    {
+      "id": 1,
+      "title": "إنفلونزا الطيور - انتشار عالمي",
+      "description": "تحذير: انتشار واسع في المناطق الحارة، احرص على عزل الطيور والدواجن",
+      "severity": "high",
+      "affected_animals": ["دواجن", "طيور"],
+      "date": "2026-10-08",
+      "source": "منظمة الصحة الحيوانية العالمية",
+      "prevention": "تطعيم دوري، تهوية جيدة، نظافة المزرعة"
+    },
+    {
+      "id": 2,
+      "title": "جرب الأرنب - ظهور محلي",
+      "description": "حالات مؤكدة من جرب الأرانب في المناطق الريفية",
+      "severity": "medium",
+      "affected_animals": ["أرانب"],
+      "date": "2026-10-07",
+      "source": "وزارة الزراعة",
+      "prevention": "عزل الحيوانات المصابة، علاج موضعي بالكبريت"
+    }
+  ],
+  "animal_market": {
+    "pets": [
+      {
+        "animal": "قطة فارسية",
+        "price_min": 150,
+        "price_max": 500,
+        "currency": "USD",
+        "trend": "up",
+        "date": "2026-10-08"
+      },
+      {
+        "animal": "كلب جولدن ريتريفر",
+        "price_min": 200,
+        "price_max": 800,
+        "currency": "USD",
+        "trend": "stable",
+        "date": "2026-10-08"
+      }
+    ],
+    "livestock": [
+      {
+        "animal": "لحم دجاج (كيلو)",
+        "price_min": 2.5,
+        "price_max": 4,
+        "currency": "USD",
+        "trend": "down",
+        "date": "2026-10-08"
+      },
+      {
+        "animal": "لحم بقري (كيلو)",
+        "price_min": 5,
+        "price_max": 10,
+        "currency": "USD",
+        "trend": "up",
+        "date": "2026-10-08"
+      }
+    ]
+  },
+  "faq_priority": [
+    {
+      "priority": 1,
+      "question": "ما هي أعراض إنفلونزا الطيور عند الدواجن؟",
+      "answer": "الأعراض تشمل: الخمول، فقدان الشهية، انخفاض إنتاج البيض، تورم الوجه والرأس، إسهال، وعدم استقرار عصبي.",
+      "category": "diseases",
+      "keywords": ["إنفلونزا", "دواجن", "طيور", "طوارئ"]
+    },
+    {
+      "priority": 2,
+      "question": "كيف أمنع فقدان ا��شهية عند قطتي؟",
+      "answer": "تأكد من جودة الطعام، ثبات أوقات التغذية، بيئة هادئة، وتجنب التغييرات المفاجئة في الطعام.",
+      "category": "cats",
+      "keywords": ["قطط", "فقدان شهية", "تغذية"]
+    },
+    {
+      "priority": 3,
+      "question": "ما الأطعمة الممنوعة للكلاب؟",
+      "answer": "الشوكولاتة، البصل، الثوم، العنب، الزبيب، وبعض الأطعمة الدهنية جداً.",
+      "category": "dogs",
+      "keywords": ["كلاب", "أطعمة سامة", "تغذية"]
+    }
+  ],
+  "articles_priority": [
+    {
+      "id": 1,
+      "title": "كيفية الوقاية من الأمراض المعدية عند الدواجن",
+      "slug": "prevent-poultry-diseases",
+      "category": "diseases",
+      "priority": "high",
+      "summary": "دليل شامل للوقاية والمراقبة",
+      "author": "د. محجوبي",
+      "date": "2026-10-08",
+      "reading_time": 8
+    },
+    {
+      "id": 2,
+      "title": "أفضل ممارسات تنظيف صندوق فضلات القطط",
+      "slug": "cat-litter-box-care",
+      "category": "cats",
+      "priority": "medium",
+      "summary": "نصائح عملية للنظافة والصحة",
+      "author": "د. محجوبي",
+      "date": "2026-10-06",
+      "reading_time": 5
+    },
+    {
+      "id": 3,
+      "title": "جدول التطعيمات الكامل للكلاب",
+      "slug": "dog-vaccination-schedule",
+      "category": "dogs",
+      "priority": "high",
+      "summary": "متى يتم تطعيم الجراء والكلاب البالغة",
+      "author": "د. محجوبي",
+      "date": "2026-10-05",
+      "reading_time": 6
+    }
+  ]
+}
