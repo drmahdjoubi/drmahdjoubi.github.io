@@ -1,75 +1,75 @@
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+const knowledgeInput = document.getElementById('knowledgeSearch');
+const filterButtons = document.querySelectorAll('[data-filter]');
+const cards = document.querySelectorAll('.know');
 
-function updateClock() {
-  const now = new Date();
-  const el = $('#clock');
-  if (el) {
-    el.textContent = now.toLocaleTimeString('ar-DZ', { hour: '2-digit', minute: '2-digit' }) + ' · ' + now.toLocaleDateString('ar-DZ', { weekday: 'long', day: 'numeric', month: 'long' });
-  }
+function applyFilter(category = 'all') {
+  const query = (knowledgeInput?.value || '').trim().toLowerCase();
+
+  cards.forEach((card) => {
+    const text = (card.dataset.text || card.textContent || '').toLowerCase();
+    const matchesCategory = category === 'all' || card.dataset.cat === category;
+    const matchesQuery = !query || text.includes(query);
+    card.style.display = matchesCategory && matchesQuery ? 'block' : 'none';
+  });
 }
-setInterval(updateClock, 1000);
-updateClock();
 
-const knowledgeInput = $('#knowledgeSearch');
 if (knowledgeInput) {
-  function filterKnowledge(cat = 'all') {
-    const q = knowledgeInput.value.trim().toLowerCase();
-    $$('.know').forEach(item => {
-      const matchCat = cat === 'all' || item.dataset.cat === cat;
-      const text = (item.dataset.text || item.textContent || '').toLowerCase();
-      const matchQuery = !q || text.includes(q);
-      item.classList.toggle('hidden', !(matchCat && matchQuery));
-    });
-  }
+  knowledgeInput.addEventListener('input', () => applyFilter(window.currentFilter || 'all'));
+}
 
-  knowledgeInput.addEventListener('input', () => filterKnowledge(window.currentFilter || 'all'));
-  $('#clearSearch')?.addEventListener('click', () => {
-    knowledgeInput.value = '';
-    filterKnowledge('all');
-    window.currentFilter = 'all';
-    $$('.filter-row .btn').forEach(btn => btn.classList.toggle('active', btn.dataset.filter === 'all'));
+filterButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    window.currentFilter = button.dataset.filter || 'all';
+    filterButtons.forEach((b) => b.classList.toggle('active', b === button));
+    applyFilter(window.currentFilter);
   });
+});
 
-  $$('.filter-row .btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      window.currentFilter = btn.dataset.filter || 'all';
-      $$('.filter-row .btn').forEach(x => x.classList.toggle('active', x === btn));
-      filterKnowledge(window.currentFilter);
-    });
+const clearSearchButton = document.getElementById('clearSearch');
+if (clearSearchButton && knowledgeInput) {
+  clearSearchButton.addEventListener('click', () => {
+    knowledgeInput.value = '';
+    window.currentFilter = 'all';
+    filterButtons.forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
+    applyFilter('all');
   });
 }
 
-const aiQuestion = $('#aiQuestion');
-const aiResult = $('#aiResult');
-const askAi = $('#askAi');
+const aiQuestion = document.getElementById('aiQuestion');
+const askAi = document.getElementById('askAi');
+const aiResult = document.getElementById('aiResult');
 
 if (askAi && aiQuestion && aiResult) {
   askAi.addEventListener('click', () => {
-    const q = aiQuestion.value.trim();
+    const q = (aiQuestion.value || '').trim();
     if (!q) {
       aiResult.textContent = 'يرجى كتابة سؤال أولاً.';
       return;
     }
 
-    let answer = 'الخلاصة: راج�� الطبيب البيطري إذا استمر الأعراض.';
-    if (/قط|قطه|قطة|قطط/.test(q)) {
-      answer = 'القط: راقب فقدان الشهية أو القيء، واستشر الطبيب إذا استمر لأكثر من 24 ساعة أو إذا ظهر ضعف أو جفاف.';
-    } else if (/كلب|كلبة|كلاب/.test(q)) {
-      answer = 'الكلب: تحقق من الطعام، الوزن، النشاط، ووجود طفيليات. إذا كانت الأعراض متكررة أو شديدة، فالاستشارة البيطرية ضرورية.';
-    } else if (/غذاء|علف|تغذية|طعام/.test(q)) {
-      answer = 'التغذية: راقب النسبة المناسبة للبروتين، العمر، والوزن. لا تحدث كميات كبيرة فجأة، وابتعد عن الأطعمة السامة.';
+    const lower = q.toLowerCase();
+    let answer = 'المعلومة الموصى بها: راجع الطبيب البيطري إذا استمرت الأعراض أكثر من 24 ساعة.';
+
+    if (/قط|قطة|قطط/.test(lower)) {
+      answer = 'للمشكلات الشائعة عند القطط: راقب فقدان الشهية والقيء، وإذا استمر لأكثر من 24 ساعة أو ظهر جفاف أو ألم، يُستحسن مراجعة الطبيب البيطري.';
+    } else if (/كلب|كلبة|كلاب/.test(lower)) {
+      answer = 'للمشكلات الشائعة عند الكلاب: تأكد من الطعام، المرتب، الطفيليات, والوزن. إذا تكرر الإسهال أو القيء أو تغير السلوك، راجع الطبيب البيطري.';
+    } else if (/تغذي|علف|طعام|غذاء/.test(lower)) {
+      answer = 'للتغذية: يجب أن يكون النظام الغذائي مناسبًا للعمر ونوع الحيوان، مع عدم إعطاء أطعمة سامة مثل الشوكولاتة، البصل، والعنب والزبيب.';
+    } else if (/سلوك|خدش|فضلات|تدريب/.test(lower)) {
+      answer = 'في السلوك: استخدم المكافأة الإيجابية، وحدد وقتاً منتظماً للتدريب، وقدم للأرنب/القط/الكلب بيئة مناسبة تقلل التوتر.';
     }
 
     aiResult.textContent = 'النتيجة: ' + answer;
   });
 }
 
-$$('.tag').forEach(tag => {
+const quickTags = document.querySelectorAll('.tag');
+quickTags.forEach((tag) => {
   tag.addEventListener('click', () => {
     if (aiQuestion) {
       aiQuestion.value = tag.dataset.question || '';
-      askAi.click();
+      if (askAi) askAi.click();
     }
   });
 });
