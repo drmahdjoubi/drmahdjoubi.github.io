@@ -1,0 +1,86 @@
+const knowledgeInput = document.getElementById('knowledgeSearch');
+const filterButtons = document.querySelectorAll('[data-filter]');
+const cards = document.querySelectorAll('.know');
+
+function applyFilter(category = 'all') {
+  const query = (knowledgeInput?.value || '').trim().toLowerCase();
+  cards.forEach((card) => {
+    const text = (card.dataset.text || card.textContent || '').toLowerCase();
+    const matchesCategory = category === 'all' || card.dataset.cat === category;
+    const matchesQuery = !query || text.includes(query);
+    card.style.display = matchesCategory && matchesQuery ? 'block' : 'none';
+  });
+}
+
+if (knowledgeInput) {
+  knowledgeInput.addEventListener('input', () => applyFilter(window.currentFilter || 'all'));
+}
+
+filterButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    window.currentFilter = button.dataset.filter || 'all';
+    filterButtons.forEach((b) => b.classList.toggle('active', b === button));
+    applyFilter(window.currentFilter);
+  });
+});
+
+const clearSearchButton = document.getElementById('clearSearch');
+if (clearSearchButton && knowledgeInput) {
+  clearSearchButton.addEventListener('click', () => {
+    knowledgeInput.value = '';
+    window.currentFilter = 'all';
+    filterButtons.forEach((b) => b.classList.toggle('active', b.dataset.filter === 'all'));
+    applyFilter('all');
+  });
+}
+
+const aiQuestion = document.getElementById('aiQuestion');
+const askAi = document.getElementById('askAi');
+const aiResult = document.getElementById('aiResult');
+
+if (askAi && aiQuestion && aiResult) {
+  askAi.addEventListener('click', () => {
+    const q = (aiQuestion.value || '').trim();
+    if (!q) {
+      aiResult.textContent = 'يرجى كتابة سؤال أولاً.';
+      return;
+    }
+
+    const lower = q.toLowerCase();
+    let answer = 'المعلومة الموصى بها: راجع الطبيب البيطري إذا استمرت الأعراض أكثر من 24 ساعة.';
+
+    if (/قط|قطة|قطط/.test(lower)) {
+      answer = 'للمشكلات الشائعة عند القطط: راقب فقدان الشهية والقيء، وإذا استمر لأكثر من 24 ساعة أو ظهر جفاف أو ألم، يُستحسن مراجعة الطبيب البيطري.';
+    } else if (/كلب|كلبة|كلاب/.test(lower)) {
+      answer = 'للمشكلات الشائعة عند الكلاب: تأكد من الطعام، التهوية، النظافة، والوزن. إذا تكرر الإسهال أو القيء أو تغير السلوك، راجع الطبيب البيطري.';
+    } else if (/تغذي|علف|طعام|غذاء/.test(lower)) {
+      answer = 'للتغذية: يجب أن يكون النظام الغذائي مناسبًا للعمر ونوع الحيوان، مع تجنب الأطعمة السامة مثل الشوكولاتة، البصل، والعنب والزبيب.';
+    } else if (/سلوك|خدش|فضلات|تدريب/.test(lower)) {
+      answer = 'في السل��ك: استخدم المكافأة الإيجابية، وحدد وقتاً منتظماً للتدريب، وقدم للقط أو الكلب بيئة مناسبة تقلل التوتر.';
+    }
+
+    aiResult.textContent = 'النتيجة: ' + answer;
+  });
+}
+
+const quickTags = document.querySelectorAll('.tag');
+quickTags.forEach((tag) => {
+  if (!tag.dataset.question) return;
+  tag.addEventListener('click', () => {
+    if (aiQuestion) {
+      aiQuestion.value = tag.dataset.question || '';
+      if (askAi) askAi.click();
+    }
+  });
+});
+
+const clock = document.getElementById('clock');
+if (clock) {
+  const updateClock = () => {
+    const now = new Date();
+    clock.textContent = now.toLocaleTimeString('ar-DZ', { hour: '2-digit', minute: '2-digit' }) + ' • ' + now.toLocaleDateString('ar-DZ', { weekday: 'long', day: 'numeric', month: 'long' });
+  };
+  updateClock();
+  setInterval(updateClock, 60000);
+}
+
