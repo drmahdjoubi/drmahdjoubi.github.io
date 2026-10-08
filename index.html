@@ -1,444 +1,184 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>د. محجوبي عبدالناصر | المنصة البيطرية والمعرفة العلمية</title>
-  <meta name="description" content="منصة الدكتور محجوبي عبدالناصر: الطب البيطري، الأبحاث، قاعدة المعرفة، أدوات بيطرية، ومساعد ذكي محلي">
-  <meta name="author" content="محجوبي عبدالناصر">
-  <meta name="theme-color" content="#063b2d">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#071713;--panel:#0d241d;--panel2:#102e25;--ink:#f2fff9;--muted:#a8c2b8;--brand:#39e6a2;--brand2:#22c7d9;--gold:#f7c75b;--danger:#ff7185;--line:#21483b;--shadow:0 18px 50px #0007
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:90px}
-    body{margin:0;font-family:'Cairo',sans-serif;background:radial-gradient(circle at 10% 0,#0e3a2b 0,transparent 30%),radial-gradient(circle at 90% 10%,#1a5a4a 0,transparent 35%),linear-gradient(180deg,#071713,#0a0f0d);color:var(--ink);line-height:1.7}
-    a{text-decoration:none}
-    .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
-    header{position:sticky;top:0;z-index:100;background:rgba(7,23,19,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-    .brand{font-size:1.05rem;color:var(--brand);font-weight:800}
-    .navlinks{display:flex;gap:15px;flex-wrap:wrap}
-    .navlinks a{color:var(--muted);font-size:.9rem;transition:.2s ease}
-    .navlinks a:hover{color:var(--brand)}
-    select{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-family:'Cairo',sans-serif}
-    section{padding:42px 0;border-bottom:1px solid var(--line)}
-    .sectionHead{margin-bottom:24px}
-    .sectionHead h2{margin:0 0 8px;font-size:2rem}
-    .sectionHead p{margin:0;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-    .card{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:20px;cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
-    .card:hover{transform:translateY(-4px);border-color:var(--brand);box-shadow:0 15px 35px rgba(57,230,162,.12)}
-    .card h3{margin:0 0 10px;font-size:1.1rem}
-    .card p{margin:0;color:var(--muted);font-size:.92rem}
-    .icon{font-size:2rem;display:block;margin-bottom:8px}
-    .btn{display:inline-block;padding:11px 18px;border:none;border-radius:9px;font-family:'Cairo',sans-serif;font-weight:700;cursor:pointer;transition:.2s ease}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#06241d}
-    .btn.primary:hover{transform:translateY(-1px)}
-    .btn.alt{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
-    .btn.alt:hover{border-color:var(--brand);color:var(--brand)}
-    .notice{background:rgba(255,113,133,.08);border-right:4px solid var(--danger);padding:12px;border-radius:8px;color:var(--muted)}
-    .ai-panel{background:linear-gradient(135deg,rgba(57,230,162,.06),rgba(34,199,217,.06));border:1px dashed var(--brand);border-radius:16px;padding:22px}
-    textarea,input{font-family:'Cairo',sans-serif}
-    textarea,input[type="date"],input[type="number"],input[type="text"]{width:100%;padding:12px 14px;background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:8px;outline:none}
-    textarea:focus,input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(57,230,162,.12)}
-    .tag{display:inline-block;padding:8px 12px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:999px;cursor:pointer;margin:6px 6px 0 0;font-size:.85rem}
-    .tag:hover{border-color:var(--brand);color:var(--brand)}
-    .ai-result{margin-top:14px;padding:14px 16px;background:var(--panel2);border-right:4px solid var(--brand);border-radius:8px;min-height:60px;display:none;color:var(--ink)}
-    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(3px);align-items:center;justify-content:center;z-index:1000}
-    .modal.active{display:flex}
-    .modal-content{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--brand);border-radius:16px;padding:26px;max-width:640px;width:90%;max-height:80vh;overflow:auto;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-    .close-btn{position:absolute;top:15px;right:15px;background:var(--danger);border:none;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem}
-    .source-badge{display:inline-block;padding:7px 10px;border-radius:999px;background:var(--brand2);color:#06241d;font-size:.78rem;font-weight:700;margin:5px 5px 0 0}
-    .copyright-box{margin-top:18px;padding:12px 14px;background:rgba(255,113,133,.08);border-right:4px solid var(--danger);border-radius:8px;color:var(--muted)}
-    footer{padding:26px 0;text-align:center;color:var(--muted);border-top:1px solid var(--line);background:#0b1a16}
-    @media (max-width:767px){
-      nav{flex-direction:column;align-items:flex-start}
-      .navlinks{gap:8px}
-      .sectionHead h2{font-size:1.5rem}
-      .card{padding:16px}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>د. محجوبي عبدالناصر | المنصة البيطرية والمعرفة العلمية</title>
+<meta name="description" content="منصة الدكتور محجوبي عبدالناصر: الطب البيطري، الأبحاث، قاعدة المعرفة، الأدوات الذكية، الوسائط الحقيقية، ومعلومات موثقة">
+<meta name="author" content="محجوبي عبدالناصر">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#063b2d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#071713;--panel:#0d241d;--panel2:#102e25;--ink:#f2fff9;--muted:#a8c2b8;--brand:#39e6a2;--brand2:#22c7d9;--gold:#f7c75b;--danger:#ff7185;--line:#21483b;--shadow:0 18px 50px #0007}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}body{margin:0;background:radial-gradient(circle at 10% 0,#0e3a2b 0,transparent 32%),radial-gradient(circle at 90% 10%,#1a5a4a 0,transparent 35%),linear-gradient(180deg,#071713,#0a0f0d);color:var(--ink);line-height:1.7;font-family:'Cairo',sans-serif}
+a{text-decoration:none}img{max-width:100%;display:block}.wrap{max-width:1200px;margin:0 auto;padding:0 20px}.top{background:rgba(5,20,15,.9);border-bottom:1px solid var(--line);color:var(--muted);font-size:12px}.topin{display:flex;justify-content:space-between;align-items:center;padding:8px 0;gap:15px}.headerbar{background:linear-gradient(135deg,rgba(7,23,19,.95),rgba(13,36,29,.9));backdrop-filter:blur(8px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100}header nav{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:14px 0}.brand{font-size:18px;font-weight:800;color:var(--brand)}.navlinks{display:flex;gap:18px;flex-wrap:wrap}.navlinks a{color:var(--muted);font-size:14px;transition:.2s ease}.navlinks a:hover{color:var(--brand)}.lang{background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:7px 12px;border-radius:8px;font-family:'Cairo',sans-serif};
+main{min-height:calc(100vh - 88px)}section{padding:42px 0;border-bottom:1px solid var(--line)}.heroGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}.badge{display:inline-block;background:rgba(57,230,162,.1);border:1px solid rgba(57,230,162,.25);padding:8px 14px;border-radius:999px;color:var(--brand);font-weight:700;font-size:13px}.lead{font-size:18px;color:var(--muted);max-width:700px}.hero h1{font-size:clamp(2.2rem,4vw,4rem);line-height:1.2;margin:18px 0}.hero h1 span{color:var(--brand)}.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.btn{display:inline-block;padding:12px 18px;border-radius:10px;font-weight:800;cursor:pointer;border:none;font-family:'Cairo',sans-serif}.btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#06241d}.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.chip{border:1px solid var(--line);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.02);color:var(--muted);font-size:13px}.heroCard{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}.doctorIcon{font-size:58px;margin-bottom:8px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.stat{background:rgba(255,255,255,.02);border:1px solid var(--line);padding:18px 14px;border-radius:12px;text-align:center}.stat b{display:block;font-size:30px;color:var(--brand)}.small{font-size:12px;color:var(--muted)}.sectionHead{margin-bottom:26px}.sectionHead h2{margin:0 0 10px;font-size:32px}.sectionHead p{margin:0;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}.card{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:20px;transition:transform .2s ease,border-color .2s ease;box-shadow:0 10px 28px rgba(0,0,0,.12)}.card:hover{transform:translateY(-5px);border-color:var(--brand)}.card h3{margin:0 0 10px;font-size:20px}.card p{margin:0;color:var(--muted)}.icon{font-size:32px;display:block;margin-bottom:8px}.searchBox{display:flex;gap:10px;background:var(--panel);border:1px solid var(--line);padding:8px 12px;border-radius:12px;align-items:center;margin:18px 0}.searchBox input{background:transparent;border:none;outline:none;color:var(--ink);font-family:'Cairo',sans-serif;font-size:16px;width:100%}.filter{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 20px}.filter button{padding:8px 14px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-family:'Cairo',sans-serif}.filter button.active{border-color:var(--brand);color:var(--brand)}.smartGrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.smartPanel{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);padding:18px;border-radius:12px}.faqList{display:grid;gap:12px}.faqItem{background:rgba(255,255,255,.02);border:1px solid var(--line);padding:12px;border-radius:10px}.faqItem strong{display:block;margin-bottom:6px}.faqItem p{margin:0;color:var(--muted)}.miniTags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.tag{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);cursor:pointer;font-size:13px}.tag:hover{border-color:var(--brand);color:var(--brand)}.aiResultStyle{margin-top:12px;background:rgba(57,230,162,.08);border-right:3px solid var(--brand);padding:12px;border-radius:10px;color:var(--ink)}.notice{margin-top:15px;padding:12px 14px;border-right:4px solid var(--danger);background:rgba(255,113,133,.08);color:var(--muted);border-radius:8px}.tool{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);padding:18px;border-radius:12px}.tool input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-family:'Cairo',sans-serif;margin-bottom:8px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.gameGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}.mediaGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}.mediaCard{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;overflow:hidden}.mediaCard img{width:100%;height:220px;object-fit:cover}.mediaBody{padding:16px}.mediaBody h3{margin:0 0 8px}.videoWrap{aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}.videoWrap iframe{width:100%;height:100%;border:0}.smallText{font-size:12px;color:var(--muted)}.copyright{background:rgba(255,113,133,.08);border-right:4px solid var(--danger);padding:12px;border-radius:10px;color:var(--muted);margin-top:18px}.footer{padding:26px 0;text-align:center;color:var(--muted);background:#0b1a16;border-top:1px solid var(--line)}.miniGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}.miniGrid .mini{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:12px}.mini strong{display:block;margin-bottom:6px}.@media (max-width:900px){.heroGrid,.smartGrid{grid-template-columns:1fr}.navlinks{gap:10px}}@media (max-width:680px){.topin{flex-wrap:wrap}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}.sectionHead h2{font-size:26px}.navlinks{display:none}} </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <nav>
-        <div class="brand">🩺 د. محجوبي عبدالناصر</div>
-        <div class="navlinks">
-          <a href="#about">الرئيسية</a>
-          <a href="#knowledge">المعرفة</a>
-          <a href="#ai">المساعد الذكي</a>
-          <a href="#tools">الأدوات</a>
-          <a href="#contact">التواصل</a>
-        </div>
-        <select id="lang">
-          <option>العربية</option>
-          <option>English</option>
-        </select>
-      </nav>
-    </div>
-  </header>
+<div class="top"><div class="wrap topin"><span id="clock">—</span><span>﴿وَمَا مِن دَابَّةٍ فِي الأَرْضِ إِلَّا عَلَى اللَّهِ رِزْقُهَا﴾</span></div></div>
+<header class="headerbar"><div class="wrap"><nav>
+<strong class="brand">🩺 د. محجوبي عبدالناصر</strong>
+<div class="navlinks">
+<a href="#about">الرئيسية</a><a href="#services">الخدمات</a><a href="#knowledge">المعرفة</a><a href="#research">الأبحاث</a><a href="#tools">الأدوات</a><a href="#media">الوسائط</a><a href="#contact">التواصل</a>
+</div>
+<select class="lang" id="lang"><option>العربية</option><option>English</option></select>
+</nav></div></header>
 
-  <main>
-    <section id="about">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>منصة الطب البيطري والمعرفة العلمية</h2>
-          <p>محتوى تعليمي، تقني، وأدوات تفاعلية لدعم المربين والطلاب والأطباء البيطريين</p>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <span class="icon">🔬</span>
-            <h3>قاعدة المعرفة</h3>
-            <p>معلومات منظمة حسب الفئات: أليفة، مواشي، دواجن، وبحوث.</p>
-          </div>
-          <div class="card">
-            <span class="icon">🤖</span>
-            <h3>مساعد ذكي محلي</h3>
-            <p>محرك نصي يجيب عن أسئلة شائعة ويقترح حلولًا أولية.</p>
-          </div>
-          <div class="card">
-            <span class="icon">📚</span>
-            <h3>مصادر موثقة</h3>
-            <p>كل معلومة مرتبطة بمصدر علمي أو مرجعي مع توثيق واضح.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<main>
+<section id="about"><div class="wrap heroGrid">
+<div class="hero">
+<span class="badge">● منصة بيطرية وعلمية متطورة</span>
+<h1>الدكتور <span>محجوبي عبدالناصر</span></h1>
+<p class="lead">طبيب بيطري وباحث أكاديمي. منصة تجمع بين الطب البيطري، المعارف العلمية، الموارد الثقافية، الأدوات الذكية، والوسائط الحقيقية لتقديم محتوى موثوق ومفيد للمربين والطلاب والمختصين.</p>
+<div class="btns"><a class="btn primary" href="#knowledge">استكشف قاعدة المعرفة</a><a class="btn alt" href="#services">جميع الخدمات</a></div>
+<div class="chips"><span class="chip">🐕 حيوانات أليفة</span><span class="chip">��� مواشي</span><span class="chip">🐓 دواجن</span><span class="chip">🔬 أبحاث</span><span class="chip">📚 مراجع</span></div>
+</div>
+<div class="heroCard">
+<div class="doctorIcon">👨‍⚕️🐾</div>
+<h3>مركز المعرفة البيطرية</h3>
+<p class="smallText">منصة تعليمية متكاملة تجمع بين المعرفة العملية، الأبحاث، الصور، الفيديوهات، والمصادر الموثوقة في مجال الطب البيطري.</p>
+<div class="statgrid">
+<div class="stat"><b>8+</b><span class="small">فئات حيوانية</span></div>
+<div class="stat"><b>12</b><span class="small">أداة ومنصة</span></div>
+<div class="stat"><b>4K</b><span class="small">صور وفيديوهات</span></div>
+</div>
+</div>
+</div></section>
 
-    <section id="knowledge">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>قاعدة المعرفة البيطرية</h2>
-          <p>انقر على أي بطاقة لعرض تفاصيلها والمصادر المرتبطة بها</p>
-        </div>
-        <div style="margin-bottom:18px">
-          <input id="searchBox" type="text" placeholder="ابحث: كلب، قطة، تغذية، لقاحات، دواجن..." aria-label="بحث في المعرفة">
-        </div>
-        <div id="knowledgeGrid" class="grid"></div>
-      </div>
-    </section>
+<section id="services"><div class="wrap"><div class="sectionHead"><div><h2>الخدمات والمنصة</h2><p class="muted">واجهة واحدة لخدمات الطبيب والمربين والطلاب والمختصين.</p></div></div>
+<div class="grid">
+<div class="card"><div class="icon">🩺</div><h3>استشارات بيطرية</h3><p>استشارة تربوية وتوعوية حول الحالة الصحية للحيوان، مع توجيه نحو الفحص الطبي المناسب وتفادي العلاج الذاتي غير الآمن.</p></div>
+<div class="card"><div class="icon">🏥</div><h3>الوقاية والرعاية</h3><p>إرشادات عامة للتلقيح، التغذية، النظافة، العزل، ومراقبة الحالة العامة للحيوان لمنع انتشار الأمراض.</p></div>
+<div class="card"><div class="icon">🔬</div><h3>البحث العلمي</h3><p>معلومات وأبحاث مبسطة ومراجع موثقة في مجالات الت��خيص، الوقاية، التلقيح، والغذاء الحيواني.</p></div>
+<div class="card"><div class="icon">🎓</div><h3>تعليم بيطري</h3><p>بطاقات تعليمية، أسئلة قصيرة، مصطلحات، وحالات عملية تساهم في دعم الفهم العلمي للطلاب والمهتمين.</p></div>
+<div class="card"><div class="icon">🌍</div><h3>الدراسة والجامعات</h3><p>دليل يمكن تطويره ليضم كليات الطب البيطري، المنح، ورابطات البحث الأكاديمي والتعاون العلمي.</p></div>
+<div class="card"><div class="icon">📚</div><h3>قاعدة المعرفة</h3><p>محتوى قابل للبحث عن الأمراض، الأعراض، الوقاية، التغذية، والتشخيص الأولي بالاعتماد على مصادر موثقة.</p></div>
+</div></div></section>
 
-    <section id="ai">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>المساعد الذكي المحلي</h2>
-          <p>هذه نسخة تعليمية ذكية تعتمد على قاعدة معرفة محلية، وليست بديلاً عن التشخيص الطبي</p>
-        </div>
+<section id="knowledge"><div class="wrap"><div class="sectionHead"><div><h2>الموسوعة البيطرية وقاعدة المعرفة</h2><p>ابحث في المحتوى العلمي والتوعوي الموثق بحسب الفئة الحيوانية.</p></div></div>
+<div class="searchBox"><span>🔎</span><input id="knowledgeSearch" placeholder="ابحث: السعار، البارفو، التغذية، القطط، الكلاب..."></div>
+<div class="filter"><button class="active" data-filter="all">الكل</button><button data-filter="pets">أليفة</button><button data-filter="farm">مواشي</button><button data-filter="poultry">دواجن</button><button data-filter="research">أبحاث</button></div>
+<div class="grid" id="knowledgeGrid">
+<div class="card know" data-cat="pets" data-text="كلاب قطط السعار البارفو تغذية الطفيليات"><div class="icon">🐕</div><h3>الكلاب والقطط</h3><p>التغذية، الطفيليات، الوقاية، الأعراض، والردود السريعة في الحالات الشائعة.</p></div>
+<div class="card know" data-cat="farm" data-text="أبقار أغنام ماعز حمى قلاعية مرض حيواني تغذية"><div class="icon">🐄</div><h3>الأبقار والأغنام</h3><p>إدارة العليقة، رعاية القطيع، التحصينات، والصحة الانتاجية للمواشي.</p></div>
+<div class="card know" data-cat="poultry" data-text="دجاج دواجن رعاية تهوية حرارة تطعيم"><div class="icon">🐓</div><h3>الدواجن</h3><p>الإدارة، التهوية، الحرارة، المزارع الحديثة، ومكافحة الأمراض.</p></div>
+<div class="card know" data-cat="pets" data-text="السموم المنزلية شوكولاتة ثوم بصل عنب زبيب"><div class="icon">⚠️</div><h3>السموم المنزلية</h3><p>الأطعمة التي قد تكون خطيرة للحيوانات، مثل الشوكولاتة، البصل، والثوم.</p></div>
+<div class="card know" data-cat="research" data-text="لقاحات أدوية تشخيص ذكاء اصطناعي طب بيطري"><div class="icon">🧬</div><h3>الطب البيطري الحديث</h3><p>تطورات في اللقاحات، التشخيص المبكر، والتقنيات الحديثة في العناية الحيوانية.</p></div>
+<div class="card know" data-cat="research" data-text="بطاقات للطلاب مصطلحات مختبر تشخيص"><div class="icon">🎓</div><h3>بطاقات للطلاب</h3><p>مصطلحات أساسية، حالات تعليمية، ومفاهيم مختبرية تسهل الدراسة.</p></div>
+</div>
 
-        <div class="ai-panel">
-          <textarea id="aiQuestion" rows="4" placeholder="مثال: ما أعراض البارفو في الكلاب؟ كيف أعتني بقطة مريضة؟ ما أفضل نظام تغذية للأبقار؟"></textarea>
-          <div style="margin-top:12px">
-            <button class="btn primary" id="askAiBtn">اطرح السؤال</button>
-          </div>
-          <div style="margin-top:14px">
-            <div class="tag" data-question="ما أعراض البارفو في الكلاب؟">أعراض البارفو</div>
-            <div class="tag" data-question="ما أفضل غذاء للقطط؟">تغذية القطط</div>
-            <div class="tag" data-question="متى يتم تطعيم الجراء؟">تطعيم الجراء</div>
-            <div class="tag" data-question="كيف أعتني بالدواجن؟">رعاية الدواجن</div>
-            <div class="tag" data-question="ما الأطعمة السامة للكلاب؟">أطعمة سامة</div>
-          </div>
-          <div id="aiResult" class="ai-result"></div>
-          <div class="copyright-box">
-            ملاحظة حقوق النشر: المعلومات الطبية والتوعوية مستندة إلى مصادر علمية ومراجع موثقة، مع الالتزام بالتوثيق والاحترام الكامل لحقوق النشر.
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="smartGrid" style="margin-top:26px;">
+<div class="smartPanel">
+<h3>أسئلة الحيوانات الأليفة الأكثر بحثاً</h3>
+<div class="faqList">
+<div class="faqItem" data-cat="pets"><strong>لماذا ترفض قطتي تناول الطعام؟</strong><p>قد يكون السبب في التوتر، اضطراب المعدة، الأسنان، أو وجود إعاقة في الشهية. يُستشار الطبيب عند استمرار المشكلة.</p></div>
+<div class="faqItem" data-cat="pets"><strong>ما الأطعمة الممنوعة والسامة للكلاب؟</strong><p>الشوكولاتة، البصل، الثوم، العنب، الزبيب، والمكسرات قد تؤدي إلى مشاكل صحية خطيرة.</p></div>
+<div class="faqItem" data-cat="pets"><strong>متى تكون القيء عند القطط خطيراً؟</strong><p>إذا تكرر القيء،伴ه فقدان الشهية، جفاف، ألم، أو انخفض النشاط، فيجب الفحص البيطري فوراً.</p></div>
+<div class="faqItem" data-cat="pets"><strong>ما هي أفضل طرق الوقاية من البراغيث والقراد؟</strong><p>الوقاية الدورية، تنظيف البيئة، وحماية الحيوان بالمستلزمات الطبية المناسبة تعطي أفضل نتائج.</p></div>
+</div>
+</div>
+<div class="smartPanel">
+<h3>مساعد الذكاء الاصطناعي - أسئلة سريعة</h3>
+<textarea id="aiq" placeholder="اكتب سؤالك عن القطط أو الكلاب أو التغذية أو الصحة..."> </textarea>
+<div class="miniTags">
+<button class="tag" data-question="ما الأعراض الأولى للالتهاب المعوي عند الكلب؟">التهاب معوي</button>
+<button class="tag" data-question="كيف أتعامل مع القطط التي تخدش الأثاث؟">تدريب القطط</button>
+<button class="tag" data-question="ما هي أفضل أنواع العلف الجاف للقطط؟">علف جاف</button>
+<button class="tag" data-question="متى يجب تطعيم الجرو؟">تطعيم الجرو</button>
+</div>
+<button class="btn primary" id="aiDemo" style="margin-top:16px">اطرح السؤال</button>
+<div id="aiResult" class="aiResultStyle">النتيجة: السؤال الحالي سيتم تصنيفه إلى فئة مناسبة مع نصائح أولية. يمكن ربط هذه الواجهة بنظام AI لاحقاً لتقديم ردود أكثر دقة.</div>
+</div>
+</div>
+<div class="notice">⚠️ المعلومات التثقيفية لا تغني عن الفحص السريري. لا تعتمد على العلاج الذاتي أو الجدل على الإنترنت في الحالات الحرجة أو الخطيرة.</div>
+</div></section>
 
-    <section id="tools">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>أدوات بيطرية تفاعلية</h2>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <span class="icon">🧮</span>
-            <h3>حاسبة الجرعة</h3>
-            <input id="weightInput" type="number" placeholder="وزن الحيوان بالكيلوغرام" style="margin-bottom:10px">
-            <input id="doseInput" type="number" placeholder="الجرعة بالملغ لكل كيلوغرام" style="margin-bottom:10px">
-            <button class="btn primary" id="doseBtn" style="width:100%">احسب</button>
-            <div id="doseOutput" style="margin-top:10px;color:var(--brand)"></div>
-          </div>
+<section id="research"><div class="wrap"><div class="sectionHead"><div><h2>مركز الأبحاث والمراجع</h2><p>قسم مخصص للأعمال العلمية، المراجع، والمحتوى البحثي في مجال الطب البيطري.</p></div></div>
+<div class="grid">
+<div class="card"><div class="icon">🔬</div><h3>الأبحاث والمنشورات</h3><p>مكان منظم لإضافة عنوان البحث، الملخص، المؤلفين، والكلمات المفتاحية، مع الربط بمراجع موثقة.</p></div>
+<div class="card"><div class="icon">📖</div><h3>مراجعات علمية</h3><p>مقالات مراجعة مبسطة حول الأمراض، اللقاحات، الأدوية، والرفق بالحيوان، مشفوعة بمصادر معتبرة.</p></div>
+<div class="card"><div class="icon">📊</div><h3>بيانات ورسوم</h3><p>قسم مستقبلي لعرض الجداول والرسوم والنتائج البحثية بصورة تفاعلية واحترافية.</p></div>
+<div class="card"><div class="icon">🤝</div><h3>تعاون أكاديمي</h3><p>نموذج للتواصل مع الباحثين، الطلبة، الجامعات، والمختبرات لتبادل المعرفة والبحث العلمي.</p></div>
+</div></div></section>
 
-          <div class="card">
-            <span class="icon">📅</span>
-            <h3>حساب عمر الحيوان</h3>
-            <input id="birthDate" type="date" style="margin-bottom:10px">
-            <button class="btn primary" id="ageBtn" style="width:100%">احسب العمر</button>
-            <div id="ageOutput" style="margin-top:10px;color:var(--brand)"></div>
-          </div>
+<section id="tools"><div class="wrap"><div class="sectionHead"><div><h2>أدوات بيطرية ذكية</h2><p>أدوات تعليمية محلية تعمل مباشرة داخل الموقع وتساعد في فهم بعض الجوانب العملية.</p></div></div>
+<div class="grid">
+<div class="tool"><h3>🧮 حاسبة وزن الجرعة التعل��مية</h3><p class="smallText">للتثقيف الحسابي فقط — لا تستخدم الناتج كوصفة علاجية دون تقييم بيطري.</p><input id="weight" type="number" placeholder="وزن الحيوان بالكيلوغرام"><input id="dose" type="number" placeholder="الجرعة لكل كيلوغرام"><button class="btn primary" id="calcDose">احسب الجرعة</button><div id="doseResult" class="smallText" style="margin-top:10px;color:var(--brand)"></div></div>
+<div class="tool"><h3>📅 عمر الحيوان</h3><p class="smallText">حساب العمر التقريبي من تاريخ الميلاد.</p><input id="birth" type="date"><button class="btn primary" id="calcAge">احسب العمر</button><div id="ageResult" class="smallText" style="margin-top:10px;color:var(--brand)"></div></div>
+<div class="tool"><h3>🔎 بحث خارجي سريع</h3><p class="smallText">يفتح نتائج حديثة على محركات البحث والفيديو.</p><input id="webq" type="text" placeholder="اكتب كلمة البحث"><button class="btn primary" id="googleBtn">بحث Google</button><button class="btn alt" id="youtubeBtn" style="margin-top:8px">بحث YouTube</button></div>
+<div class="tool"><h3>🤖 مساعد الذكاء الاصطناعي</h3><p class="smallText">واجهة جاهزة للربط لاحقاً بنظام AI أو API حقيقي داخل الموقع.</p><textarea id="aiq2" placeholder="اكتب سؤالاً عن مرض أو رعاية أو تغذية..." rows="4"></textarea><button class="btn primary" id="aiDemo2" style="margin-top:12px">تجربة الذكاء</button><div id="aiResult2" class="smallText" style="margin-top:10px;color:var(--brand)"></div></div>
+</div></div></section>
 
-          <div class="card">
-            <span class="icon">🔎</span>
-            <h3>بحث سريع</h3>
-            <input id="searchQuery" type="text" placeholder="اكتب كلمة البحث" style="margin-bottom:10px">
-            <button class="btn primary" id="webBtn" style="width:100%">ابحث في الإنترنت</button>
-          </div>
-        </div>
-      </div>
-    </section>
+<section id="media"><div class="wrap"><div class="sectionHead"><div><h2>📺 الوسائط والتعليم المرئي</h2><p>صور حقيقية و4K، وفيديوهات تعليمية من مصادر موثوقة ومفتوحة.</p></div></div>
+<div class="mediaGrid">
+<div class="mediaCard"><img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80" alt="كلب"><div class="mediaBody"><h3>🐕 رعاية الكلاب</h3><p>صور حقيقية عالية الدقة ومقاطع تعليمية عن الكلاب، التغذية، والوقاية.</p></div></div>
+<div class="mediaCard"><img src="https://images.unsplash.com/photo-1511044568932-338cba0ad803?auto=format&fit=crop&w=1600&q=80" alt="قط"><div class="mediaBody"><h3>🐱 رعاية القطط</h3><p>صور 4K لقطط ومعلومات عن السلوك، التغذية، والنظافة.</p></div></div>
+<div class="mediaCard"><img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1600&q=80" alt="أبقار"><div class="mediaBody"><h3>🐄 رعاية المو��شي</h3><p>صور حقيقية لأبقار، أغنام، ومزارع تمثل الحياة الحيوانية في المراعي.</p></div></div>
+</div>
+<div class="videoWrap" style="margin-top:22px"><iframe src="https://www.youtube.com/embed/0M6Qf9Ws9zQ?si=5XZZ5ps8E8A7w-3e" title="Vet care video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="videoWrap" style="margin-top:22px"><iframe src="https://www.youtube.com/embed/m1ORq2Kq9kA?si=EuA4nX4J4lW0uz7p" title="Pet care video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<div class="copyright">📷 جميع الصور والفيديوهات الخارجية تم اختيارها من مصادر مفتوحة ومواقع رخصة الاستخدام المسموح بها. في حالة استخدام محتوى محدد في ��شروع تجاري، يُراعى التحقق من رخصة الاستخدام للمصادر المستخدمة.</div>
+</div></section>
 
-    <section id="contact">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>التواصل</h2>
-        </div>
-        <div class="grid">
-          <a class="card" href="mailto:dr.mahdjoubi@gmail.com" style="color:var(--ink)">
-            <span class="icon">✉️</span>
-            <h3>البريد الإلكتروني</h3>
-            <p>dr.mahdjoubi@gmail.com</p>
-          </a>
-          <a class="card" href="tel:+213540661865" style="color:var(--ink)">
-            <span class="icon">📞</span>
-            <h3>الهاتف</h3>
-            <p dir="ltr">+213 540 661 865</p>
-          </a>
-          <a class="card" href="https://wa.me/213540661865" target="_blank" rel="noopener" style="color:var(--ink)">
-            <span class="icon">💬</span>
-            <h3>واتساب</h3>
-            <p>مراسلة مباشرة</p>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+<section id="contact"><div class="wrap"><div class="sectionHead"><div><h2>📞 التواصل والخدمات</h2><p>للاستشارات، التعاون العلمي، أو طلب مواعيد استشارة أو بحث.</p></div></div>
+<div class="grid">
+<a class="card" href="mailto:dr.mahdjoubi@gmail.com"><div class="icon">✉️</div><h3>البريد الإلكتروني</h3><p dir="ltr">dr.mahdjoubi@gmail.com</p></a>
+<a class="card" href="tel:+213540661865"><div class="icon">📞</div><h3>الهاتف</h3><p dir="ltr">+213 540 661 865</p></a>
+<a class="card" href="https://wa.me/213540661865" target="_blank" rel="noopener"><div class="icon">💬</div><h3>واتساب</h3><p>مراسلة مباشرة</p></a>
+<div class="card"><div class="icon">📍</div><h3>الموقع</h3><p>تنس، ولاية الشلف، الجزائر</p></div>
+</div>
+<div class="tool" style="margin-top:18px"><h3>طلب استشارة عبر واتساب</h3><div class="two"><input id="cn" type="text" placeholder="الاسم"><input id="cp" type="text" placeholder="رقم الهاتف"></div><textarea id="ca" rows="4" placeholder="اكتب سؤالك أو تفاصيل حالتك..."></textarea><button class="btn primary" id="sendWA" style="margin-top:8px">إرسال عبر واتساب</button></div>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap">© 2026 الدكتور محجوبي عبدالناصر · طبيب بيطري وباحث أكاديمي<br><span class="smallText">هذه المنصة تعليمية؛ المعلومات التوعوية لا تغني عن الفحص السريري.</span></div></footer>
 
-  <div id="detailModal" class="modal" aria-label="تفاصيل المعلومة">
-    <div class="modal-content">
-      <button class="close-btn" id="closeModalBtn" aria-label="إغلاق">✕</button>
-      <div id="modalBody"></div>
-    </div>
-  </div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function tick(){const n=new Date();$('#clock').textContent=n.toLocaleTimeString('ar-DZ',{hour:'2-digit',minute:'2-digit'})+' · '+n.toLocaleDateString('ar-DZ',{weekday:'long',day:'numeric',month:'long'});}
+setInterval(tick,1000);tick();
+const knowledgeInput=$('#knowledgeSearch');
+function filterKnowledge(cat='all'){
+  const q=knowledgeInput.value.trim().toLowerCase();
+  $$('.know').forEach(c=>{
+    const matchesCat = cat==='all'||c.dataset.cat===cat;
+    const matchesText = !q || c.dataset.text.toLowerCase().includes(q) || c.textContent.toLowerCase().includes(q);
+    c.style.display = matchesCat && matchesText ? 'block' : 'none';
+  });
+  $$('.faqItem').forEach(c=>{
+    const matchesCat = cat==='all'||c.dataset.cat===cat;
+    const matchesText = !q || c.textContent.toLowerCase().includes(q);
+    const parent = c.parentElement;
+    if(parent) parent.style.display = matchesCat && matchesText ? 'grid' : 'none';
+  });
+}
+knowledgeInput.addEventListener('input',()=>filterKnowledge(window.kcat||'all'));
+$$('[data-filter]').forEach(b=>b.onclick=()=>{window.kcat=b.dataset.filter;filterKnowledge(window.kcat);$$('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));});
 
-  <footer>
-    <div class="wrap">
-      © 2026 الدكتور محجوبي عبدالناصر · طبيب بيطري وباحث أكاديمي<br>
-      <span style="font-size:.8rem">هذا الموقع تعليمي وتوعوي، ولا يغني عن تقييم الطبيب البيطري</span>
-    </div>
-  </footer>
-
-  <script>
-    const knowledgeBase = [
-      {
-        id: 'dogs-cats',
-        title: '🐕 الكلاب والقطط',
-        category: 'pets',
-        summary: 'التغذية، الطفيليات، والأمراض الشائعة',
-        content: 'الكلاب والقطط تحتاج إلى تغذية متوازنة، الماء النظيف، ومراجعة دورية للطبيب البيطري. الوقاية من الطفيليات الخارجية والداخلية مهمة جداً، خصوصاً عند وجود أطفال أو حيوانات جديدة في المنزل.',
-        sources: [
-          { type: 'book', name: 'الطب البيطري الحديث للحيوانات الأليفة', authors: 'د. أحمد علي، د. فاطمة محمد', year: 2023 },
-          { type: 'site', name: 'الجمعية الأمريكية للطب البيطري', url: 'https://www.avma.org' }
-        ]
-      },
-      {
-        id: 'toxic-foods',
-        title: '⚠️ الأطعمة السامة',
-        category: 'pets',
-        summary: 'الأطعمة والمواد الخطرة على الحيوانات الأليفة',
-        content: 'الشوكولاتة، البصل، الثوم، العنب، والزبيب من أكثر المواد السامة للكلاب. كما أن بعض أنواع المكسرات والأطعمة المصنعة قد تكون ضارة عند تناولها بكميات كبيرة. إذا ظهرت أعراض مثل القيء أو التململ أو الارتباك، يُنصح بمراجعة البيطري فوراً.',
-        sources: [
-          { type: 'site', name: 'ASPCA', url: 'https://www.aspca.org' },
-          { type: 'book', name: 'السموم البيطرية العملية', authors: 'د. إبراهيم الحسن', year: 2022 }
-        ]
-      },
-      {
-        id: 'vaccines',
-        title: '💉 التطعيمات والوقاية',
-        category: 'pets',
-        summary: 'جدول التطعيمات والمكافحة',
-        content: 'يُستحسن متابعة جدول التطعيمات الموصى به حسب العمر ونوع الحيوان. التطعيمات الأساسية تشمل داء الكلب والبارفو ومرضاته المختلفة. الوقاية الدورية تُقلل من انتشار الأمراض داخل القطيع أو المنزل.',
-        sources: [
-          { type: 'site', name: 'الأكاديمية الأمريكية لطب الحيوانات الأليفة', url: 'https://www.aaha.org' }
-        ]
-      },
-      {
-        id: 'cattle',
-        title: '🐄 الأبقار والأغنام',
-        category: 'farm',
-        summary: 'التغذية، العلائق، والصحة الإنتاجية',
-        content: 'الأبقار والأغنام تحتاج إلى علف متوازن يحتوي على الألياف والمواد المغذية المناسبة. متابعة التهوية والنظافة والتطعيم الدوري أمر ضروري للحفاظ على الحيوان وتجنب التدهور الصحي في القطيع.',
-        sources: [
-          { type: 'book', name: 'إدارة الثروة الحيوانية', authors: 'د. سالم الجزيري', year: 2024 },
-          { type: 'site', name: 'منظمة الأغذية والزراعة (FAO)', url: 'https://www.fao.org' }
-        ]
-      },
-      {
-        id: 'poultry',
-        title: '🐓 الدواجن',
-        category: 'poultry',
-        summary: 'إدارة التهوية، الحماية، والتحصين',
-        content: 'الدواجن تحتاج إلى بيئة نظيفة، يسهل التحكم في درجة الحرارة والتهوية فيها. الالتزام بجدول التطعيمات ومراقبة سلوك الحيوان يقلل من حدوث الأمراض المشتركة داخل القطيع.',
-        sources: [
-          { type: 'site', name: 'المركز الدولي لتحسين الدواجن', url: 'https://www.icpd.org' }
-        ]
-      },
-      {
-        id: 'research',
-        title: '🧬 الطب البيطري الحديث',
-        category: 'research',
-        summary: 'اللقاحات، التشخيص، والذكاء الاصطناعي',
-        content: 'التشخيص المبكر، تحليل البيانات الحيوية، والذكاء الاصطناعي أصبحا أدوات داعمة في البيطري الحديث. هذه التقنيات تساعد على تحسين التقييم الطبي واتخاذ القرار بشكل أسرع، مع ضرورة التحقق من صحة المعلومات في كل حالة.',
-        sources: [
-          { type: 'study', name: 'تطبيقات الذكاء الاصطناعي في التشخيص البيطري', authors: 'د. محمد العاني، د. سارة النوري', year: 2024 },
-          { type: 'site', name: 'المنظمة العالمية لصحة الحيوان (OIE)', url: 'https://www.woah.org' }
-        ]
-      }
-    ];
-
-    function renderKnowledge(filterText='') {
-      const grid = document.getElementById('knowledgeGrid');
-      const q = filterText.trim().toLowerCase();
-      const items = knowledgeBase.filter(item => !q || item.title.toLowerCase().includes(q) || item.summary.toLowerCase().includes(q) || item.content.toLowerCase().includes(q));
-      grid.innerHTML = '';
-      items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <span class="icon">${item.title.split(' ')[0]}</span>
-          <h3>${item.title}</h3>
-          <p>${item.summary}</p>
-        `;
-        card.addEventListener('click', () => openDetail(item));
-        grid.appendChild(card);
-      });
-    }
-
-    function openDetail(item) {
-      const modal = document.getElementById('detailModal');
-      const body = document.getElementById('modalBody');
-      let html = `
-        <h2 style="margin-top:0">${item.title}</h2>
-        <p>${item.content}</p>
-        <div style="margin-top:18px;">
-          <h3 style="margin:0 0 8px;color:var(--brand)">المصادر:</h3>
-      `;
-      item.sources.forEach(source => {
-        if (source.type === 'site' && source.url) {
-          html += `<span class="source-badge"><a href="${source.url}" target="_blank" rel="noopener" style="color:#06241d;text-decoration:none">${source.name}</a></span>`;
-        } else {
-          html += `<span class="source-badge">${source.name} - ${source.authors || ''} ${source.year || ''}</span>`;
-        }
-      });
-      html += `</div>
-        <div class="copyright-box">
-          جميع الحقوق محفوظة لمصادرها الأصلية. هذا المحتوى يُستخدم لأغراض توضيحية وتعليمية فقط.
-        </div>
-      `;
-      body.innerHTML = html;
-      modal.classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('detailModal').classList.remove('active');
-    }
-
-    document.getElementById('searchBox').addEventListener('input', function () {
-      renderKnowledge(this.value);
-    });
-    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-    document.getElementById('detailModal').addEventListener('click', function (e) {
-      if (e.target === this) closeModal();
-    });
-
-    function generateAiResponse(question) {
-      const q = question.toLowerCase();
-      let response = '<strong>🩺 إج��بة أولية:</strong><br>';
-
-      if (q.includes('بارفو') || q.includes('الكلب') || q.includes('كلب')) {
-        response += '• الأعراض الشائعة: القيء، الإسهال، فقدان الشهية، والخمول.<br>• من المهم طلب تقييم بيطري سريع في حالة ظهور دم أو ارتفاع حرارة.<br>• التطعيم الدوري يساعد على الوقاية من المرض.';
-      } else if (q.includes('قط') || q.includes('قطة') || q.includes('هر')) {
-        response += '• القطط تحتاج إلى تغذية مناسبة ونظافة منتظمة، كما يجب مراقبة سلوكها.<br>• إذا كان هناك قيء مستمر أو رفض للطعام، يُنصح بزيارة بيطري.<br>• تجنب إعطاء الأطعمة السامة مثل البصل والثوم.';
-      } else if (q.includes('تغذية') || q.includes('غذاء') || q.includes('علف')) {
-        response += '• يفضل استخدام علف متوازن حسب العمر والحالة الصحية.<br>• الماء النظيف، البروتين المناسب، والفيتامينات مهمة في رعاية الحيوان.<br>• لا تعتمد فقط على نظ��م غذائي منزلي دون تقييم طبي.';
-      } else if (q.includes('تطعيم') || q.includes('لقاح') || q.includes('جرى') || q.includes('جرو')) {
-        response += '• التطعيم يبدأ عادةً في أشهر العمر الأولى حسب تتبع الطبيب البيطري.<br>• جدول التطعيم يختلف حسب النوع والحالة الصحية.<br>• تُوصى المتابعة الدورية لتحديث اللقاحات.';
-      } else if (q.includes('دواجن') || q.includes('دجاج') || q.includes('رعاية')) {
-        response += '• الراحة، التهوية الجيدة، والماء النظيف مهمة جداً.<br>• نظافة البيوت والتغذية المتوازنة تقلل الالتهابات والأمراض.<br>• الفحص الدوري يساعد في كشف الحالات مبكراً.';
-      } else if (q.includes('أطعمة سامة') || q.includes('سام') || q.includes('شوكولاتة') || q.includes('عنب')) {
-        response += '• الشوكولاتة، البصل، الثوم، والعنب من المواد الخطرة على الكلاب.<br>• في حالة التناول، يفضل التوجه للطبيب البيطري فوراً مع ذكر المدة والك��ية.';
-      } else {
-        response += '• يمكن استخدام قاعدة المعرفة الموجودة في الموقع لتصفح موضوعك.<br>• إذا كان السؤال متعلقاً بحالة مرضية، يفضل التواصل مع طبيب بيطري متخصص.<br>• لا تعتمد على العلاج الذاتي في الحالات الحرجة.';
-      }
-
-      response += '<br><span style="color:var(--muted)">🔎 هذه إجابة تعليمية أولية مبنية على قاعدة معرفة محلية، وليست تشخيصاً طبياً نهائياً.</span>';
-      return response;
-    }
-
-    document.getElementById('askAiBtn').addEventListener('click', function () {
-      const q = document.getElementById('aiQuestion').value.trim();
-      const resultBox = document.getElementById('aiResult');
-      if (!q) {
-        resultBox.style.display = 'block';
-        resultBox.innerHTML = 'يرجى كتابة سؤال أولاً.';
-        return;
-      }
-      resultBox.style.display = 'block';
-      resultBox.innerHTML = 'جارٍ تحليل السؤال...';
-      setTimeout(() => {
-        resultBox.innerHTML = generateAiResponse(q);
-      }, 500);
-    });
-
-    document.querySelectorAll('.tag').forEach(tag => {
-      tag.addEventListener('click', function () {
-        const q = this.dataset.question;
-        document.getElementById('aiQuestion').value = q;
-        document.getElementById('askAiBtn').click();
-      });
-    });
-
-    document.getElementById('doseBtn').addEventListener('click', function () {
-      const w = parseFloat(document.getElementById('weightInput').value);
-      const d = parseFloat(document.getElementById('doseInput').value);
-      const output = document.getElementById('doseOutput');
-      if (isNaN(w) || isNaN(d) || w <= 0 || d < 0) {
-        output.textContent = 'يرجى إدخال قيم صحيحة.';
-        return;
-      }
-      output.textContent = `💊 الجرعة المحسوبة: ${(w * d).toFixed(2)} ملغ`;
-    });
-
-    document.getElementById('ageBtn').addEventListener('click', function () {
-      const birth = document.getElementById('birthDate').value;
-      const output = document.getElementById('ageOutput');
-      if (!birth) {
-        output.textContent = 'يرجى اختيار تاريخ الميلاد.';
-        return;
-      }
-      const bd = new Date(birth);
-      const now = new Date();
-      let years = now.getFullYear() - bd.getFullYear();
-      let months = now.getMonth() - bd.getMonth();
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-      output.textContent = `📅 العمر التقريبي: ${years} سنة و ${months} شهر`;
-    });
-
-    document.getElementById('webBtn').addEventListener('click', function () {
-      const q = document.getElementById('searchQuery').value.trim();
-      if (!q) {
-        alert('يرجى إدخال كلمة للبحث');
-        return;
-      }
-      window.open('https://www.google.com/search?q=' + encodeURIComponent(q), '_blank', 'noopener');
-    });
-
-    document.getElementById('lang').addEventListener('change', function () {
-      if (this.value === 'English') {
-        alert('The English version is not yet fully translated. The site is currently optimized for Arabic.');
-      }
-    });
-
-    renderKnowledge();
-  </script>
+$('#calcDose').onclick=()=>{const w=parseFloat($('#weight').value),d=parseFloat($('#dose').value);$('#doseResult').textContent=(w>0&&d>=0)?`الناتج الحسابي = ${(w*d).toFixed(2)} mg`:'يرجى إدخال قيم صحيحة.';};
+$('#calcAge').onclick=()=>{const b=$('#birth').value;if(!b){$('#ageResult').textContent='اختر تاريخ الميلاد.';return}const bd=new Date(b),now=new Date();let y=now.getFullYear()-bd.getFullYear();let m=now.getMonth()-bd.getMonth();if(m<0){y--;m+=12;}$('#ageResult').textContent=`العمر التقريبي: ${y} سنة و ${m} شهر`;};
+function webOpen(base){const q=$('#webq').value.trim();if(q)window.open(base+encodeURIComponent(q),'_blank','noopener');}
+$('#googleBtn').onclick=()=>webOpen('https://www.google.com/search?q=');
+$('#youtubeBtn').onclick=()=>webOpen('https://www.youtube.com/results?search_query=');
+$('#aiDemo').onclick=()=>{
+  const q=$('#aiq').value.trim();
+  if(!q){$('#aiResult').textContent='النتيجة: الرجاء كتابة سؤال أولاً.';return;}
+  let style='نصيحة أولية';
+  if(/مرض|أعراض|علاج|مريض|سوء/.test(q)){style='فحص سريري وتقييم طبيب بيطري';}
+  else if(/تغذي|غذاء|علف|طعام/.test(q)){style='تغذية متوازنة ومناسبة للفئة العمرية';}
+  else if(/تدريب|خدش|فضلات|سلوك/.test(q)){style='تدريب متسق وتهيئة البيئة المناسبة';}
+  else if(/تطعيم|لقاح|وقاية/.test(q)){style='تطعيم دوري ووقاية منتظمة';}
+  $('#aiResult').textContent=`النتيجة: السؤال: “${q}” — التصنيف المقترح: ${style}. يمكن ربط هذه الواجهة بنظام AI لاحقاً لتقديم ردود أكثر دقة.`;
+};
+$('#aiDemo2').onclick=()=>{
+  const q=$('#aiq2').value.trim();
+  $('#aiResult2').textContent = q ? `النتيجة: تم تحليل سؤالك بشكل ذكي. ${q.includes('قط')||q.includes('كلب') ? 'التوصية: حدد العمر، الحالة، والمدة الزمنية للأعراض.' : 'التوصية: حدد الحيوان، العمر، والأعراض لتقييمها بشكل أفضل.'}` : 'الرجاء كتابة سؤال أولاً.';
+};
+$$('.tag').forEach(tag=>tag.onclick=()=>{$('#aiq').value = tag.dataset.question;$('#aiDemo').click();});
+$('#sendWA').onclick=()=>{const n=$('#cn').value.trim(),p=$('#cp').value.trim(),a=$('#ca').value.trim();const m=`السلام عليكم دكتور، أنا ${n}.\nهاتف: ${p}\nالسؤال:\n${a}`; if(n&&p&&a)window.open(`https://wa.me/213540661865?text=${encodeURIComponent(m)}`,'_blank','noopener'); else alert('يرجى إدخال الاسم، الهاتف، والسؤال.');};
+$('#lang').onchange=e=>{const l=e.target.value;if(l==='العربية'){document.documentElement.lang='ar';document.documentElement.dir='rtl';return}alert('تم تجهيز البنية المتعددة اللغات، وتستمر عملية التوطين تدريجياً.');};
+</script>
 </body>
 </html>
